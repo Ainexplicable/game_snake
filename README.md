@@ -6,7 +6,7 @@ A console game on Windows
 `IDE`: Visual Studio 2022  
 `Compiler`: Microsoft Visual C++ (MSVC)
 
-This program can only run on Windows, because it uses some functions that are platform-specific, for example, the functions used to clear the console screen or detect the keypress.
+This program can only be run on Windows, because it uses some functions that are platform-specific, for example, the functions used to clear the console screen or detect the keypress.
 
 Run this program on [Windows Terminal](https://www.microsoft.com/store/productId/9N0DX20HK701) to optimize the performance and experience.
 ```
@@ -28,4 +28,5 @@ player>
 ## something else
 C was the first programming language I learned.
 I began studying c in grade 9, and this console game was the first project I worked on.
+(The Visual Studio version was 2019 then)
 I sometimes make changes and improvements on it.
