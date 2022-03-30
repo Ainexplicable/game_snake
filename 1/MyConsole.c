@@ -109,13 +109,10 @@ void execute_args(char(*arg)[ARG_LEN]) {
 	}
 	// easter eggs
 	else if (strcmp(arg[0], "music") == 0) {
-		printf("Listen to Johann Sebastian Bach!\n\n");
+		printf("BWV %d\n\n", rand() % 3000);
 	}
 	else if (strcmp(arg[0], "hello") == 0) {
 		printf("'Hello!!!'\n  (^.^)\n\n");
-	}
-	else if (strcmp(arg[0], "bwv") == 0) {
-		printf("BWV %d\n\n", rand() % 3000);
 	}
 	else if (strcmp(arg[0], "os") == 0) {
 		const static char* os[] = {
@@ -156,15 +153,24 @@ void man_set() {
 
 void didact() {
 	const static char* didacts[] = {
-		"'w' 's' 'a' 'd' to control;",
-		"Game fails when the snake touches the border or its body;",
-		"'h' to display help;",
-		"'q' to quit;",
+		"The snake is marked in the matrix as 1;\n"
+		"The destination is marked as 0;\n"
+		"Use keyboard to control the snake to eat 0;\n"
+		"The score increases by 1 for each 0 eaten;\n"
+		"Game ends when the snake touches the border or its body;\n"
+		"Highest score is recorded and shown along with the current score;\n"
+		"Settings and scores in the game will not be saved "
+		"when the program is closed;\n",
+
+		"'w' 's' 'a' 'd' to control the snake;\n"
+		"'h' to display help;\n"
+		"'q' to quit the current game;\n",
+
+		"This is the end of the help page, press enter to continue.\n"
 	};
 	int len = sizeof(didacts) / sizeof(didacts[0]);
 	for (int i = 0; i < len; ++i) {
-		clear_screen();
-		printf("%s\n\n", didacts[i]);
+		printf("\n%s\n\n", didacts[i]);
 		pause();
 	}
 }
