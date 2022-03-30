@@ -1,5 +1,6 @@
 # game_snake
-A console game on Windows
+A console game on Windows  
+Compiled using Microsoft Visual C++ (MSVC).
 
 ## Specifications
 
@@ -25,7 +26,7 @@ player>
 ## How it looks
 ![image](https://user-images.githubusercontent.com/102689879/160935173-c055398d-0724-436e-84c2-b338e07cab52.png)
 
-## something else
+## Something else
 C was the first programming language I learned.
 I began studying c in grade 9, and this console game was the first project I worked on.
 (The Visual Studio version was 2019 then)
