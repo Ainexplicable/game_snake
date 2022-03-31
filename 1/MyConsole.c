@@ -101,6 +101,7 @@ void execute_args(char(*arg)[ARG_LEN]) {
 		}
 	}
 	else if (strcmp(arg[0], "exit") == 0 || strcmp(arg[0], "quit") == 0) {
+		printf("Bye\n");
 		exit(0);
 	}
 	else if (strcmp(arg[0], "cls") == 0) {
