@@ -22,21 +22,17 @@ void hello_world() {
 
 int parse(char(*arg)[ARG_LEN], char* str) {
 	int a = 0, b = 0;
-	bool space = true;
 	memset(arg, 0, sizeof(arg[0][0]) * ARG_NUM * ARG_LEN);
 	for (int i = 0; i < strlen(str); ++i) {
-		if (str[i] == ' ') {
-			b = 0;
-			space = true;
+		if (str[i] == ' ' || str[i] == '\n' || str[i] == EOF) {
+			if (b > 0) {
+				a++;
+				b = 0;
+			}
 		}
 		else {
-			if (space) {
-				++a;
-			}
-			arg[a - 1][b] = str[i];
-			arg[a - 1][b + 1] = 0;
-			++b;
-			space = false;
+			arg[a][b] = str[i];
+			arg[a][++b] = 0;
 
 			if ((a > ARG_NUM - 1) || (b > ARG_LEN - 1)) {
 				printf("ERROR: input too long. Array overflow\n\n");
@@ -53,12 +49,22 @@ void execute_args(char(*arg)[ARG_LEN]) {
 	}
 	if (strcmp(arg[0], "new") == 0) {
 		if (instructions) {
+			instructions = false;
 			didact();
 		}
 		struct LinkedList* snake = create_linked_list();
-		if (game_snake(snake) == 1) {
+		switch (game_snake(snake))
+		{
+		case 1:
 			printf("Failed!\n");
 			pause();
+			break;
+		case 2:
+			printf("ERROR: matrix is full\n");
+			pause();
+			break;
+		default:
+			break;
 		}
 		clear(snake);
 		free(snake);
@@ -157,17 +163,18 @@ void didact() {
 		"The snake is marked in the matrix as 1;\n"
 		"The destination is marked as 0;\n"
 		"Use keyboard to control the snake to eat 0;\n"
+		"\n"
 		"The score increases by 1 for each 0 eaten;\n"
 		"Game ends when the snake touches the border or its body;\n"
-		"Highest score is recorded and shown along with the current score;\n"
+		"Current score and the highest score are recorded "
+		"and shown at the bottom of the page;\n"
 		"Settings and scores in the game will not be saved "
 		"when the program is closed;\n",
 
 		"'w' 's' 'a' 'd' to control the snake;\n"
 		"'h' to display help;\n"
-		"'q' to quit the current game;\n",
-
-		"This is the end of the help page, press enter to continue.\n"
+		"'q' to quit the current game;\n"
+		"\nhelp page (END)\n"
 	};
 	int len = sizeof(didacts) / sizeof(didacts[0]);
 	for (int i = 0; i < len; ++i) {
@@ -190,40 +197,6 @@ void show_score(int score) {
 		highest_score = score;
 	printf("highest: %d\n", highest_score);
 }
-
-
-/*
-void display() {
-	int x = 5;
-	int y = 5;
-	gotoxy(x, y);
-	printf("%s", sep_line);
-	gotoxy(x, ++y);
-	for (int i = 0; i < HEIGHT; ++i) {
-		printf("|");
-		for (int j = 0; j < WIDTH; ++j) {
-			switch (matrix[i][j])
-			{
-			case SNAKE_HEAD:
-				printf("1 ");
-				break;
-			case SNAKE_BODY:
-				printf("1 ");
-				break;
-			case SNAKE_DST:
-				printf("0 ");
-				break;
-			default:
-				printf("  ");
-				break;
-			}
-		}
-		printf("|");
-		gotoxy(x, ++y);
-	}
-	printf("%s", sep_line);
-}
-*/
 
 void display() {
 	printf("%s\n", sep_line);

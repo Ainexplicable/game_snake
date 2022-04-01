@@ -15,7 +15,7 @@ int main()
 		printf("player> ");
 		memset(str, 0, sizeof(str));
 		memset(arg, 0, sizeof(arg));
-		gets_s(str, sizeof(str));
+		fgets(str, INPUT_LEN, stdin);
 		if (parse(arg, str) == 0) {
 			execute_args(arg);
 		}

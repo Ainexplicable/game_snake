@@ -8,9 +8,9 @@ char keypress = 0;
 
 /**
  * return
- * 0 - success
+ * 0 - quit
  * 1 - failed
- * 2 - quit
+ * 2 - matrix is full
  */
 int game_snake(struct LinkedList* snake) {
 	memset(matrix, 0, sizeof(matrix));
@@ -29,6 +29,7 @@ int game_snake(struct LinkedList* snake) {
 		show_parameters(keypress, rear(snake), dst);
 		display();
 		show_score(snake->size - 1);
+		printf("(press h for help or q to quit)\n");
 
 		int next = rear(snake);
 		keypress = (char)getch();
@@ -61,7 +62,7 @@ int game_snake(struct LinkedList* snake) {
 			didact();
 			continue;
 		case 'q':
-			return 2;
+			return 0;
 		default:
 			printf("Invalid input.\n");
 			continue;
@@ -75,6 +76,10 @@ int game_snake(struct LinkedList* snake) {
 
 		// insert the new head
 		enqueue(snake, next);
+
+		if (snake->size == WIDTH * HEIGHT) {
+			return 2;
+		}
 
 		int* head = value_in_matrix(rear(snake));
 
