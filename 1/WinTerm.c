@@ -1,4 +1,3 @@
-#pragma once
 #include "WinTerm.h"
 
 TCHAR getch() {
@@ -57,7 +56,7 @@ void clear_screen() {
 }
 // https://docs.microsoft.com/en-us/windows/console/clearing-the-screen#example-1
 
-void gotoxy(int x, int y) {
+void gotoxy(short x, short y) {
 	COORD coord;
 	coord.X = x;
 	coord.Y = y;

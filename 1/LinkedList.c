@@ -1,6 +1,12 @@
-#pragma once
+//
+// Created on 2022-03-31.
+//
+
 #include "LinkedList.h"
 
+/**
+ * @brief Constructs an empty list.
+ */
 LinkedList* create_linked_list()
 {
     LinkedList* list = (LinkedList*)malloc(sizeof(LinkedList));
@@ -87,7 +93,7 @@ void add(LinkedList* list, int index, int value)
  * @param index the index of the element to be removed
  * @return the element previously at the specified position
  */
-int remove_from_list(LinkedList* list, int index)
+int remove1(LinkedList* list, int index)
 {
     if (!is_element_index(list, index))
         return INT_MIN;
@@ -261,5 +267,29 @@ void enqueue(LinkedList* list, int value)
 
 int dequeue(LinkedList* list)
 {
-    return remove_from_list(list, 0);
+    return remove1(list, 0);
+}
+
+/**
+ * @brief Returns a string representation of this collection.
+ * The string representation consists of a list of the collection's elements
+ * in the order they are returned by its iterator, enclosed in square brackets ("[]").
+ * Adjacent elements are separated by the characters ", " (comma and space).
+ *
+ * @param list
+ */
+void print_string(LinkedList* list)
+{
+    if (list->size == 0)
+    {
+        printf("[]\n");
+        return;
+    }
+    ChainNode* p = list->head;
+    printf("[%d", p->value);
+    while (p = p->next)
+    {
+        printf(", %d", p->value);
+    }
+    printf("]\n");
 }

@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
-#include <stdbool.h>
 #include "Common.h"
 
 int main()
@@ -20,5 +19,4 @@ int main()
 			execute_args(arg);
 		}
 	}
-	return 0;
 }

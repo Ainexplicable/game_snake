@@ -1,5 +1,4 @@
 #include "MyConsole.h"
-#include "Common.h"
 
 bool instructions = true;
 bool parameters = true;
@@ -206,8 +205,6 @@ void display() {
 			switch (matrix[i][j])
 			{
 			case SNAKE_HEAD:
-				printf("1 ");
-				break;
 			case SNAKE_BODY:
 				printf("1 ");
 				break;

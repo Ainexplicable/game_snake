@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Common.h"
+
 #define HEIGHT 20
 #define WIDTH 20
 
@@ -11,8 +13,9 @@
 extern int matrix[HEIGHT][WIDTH];
 extern char sep_line[WIDTH * 2 + 3];
 extern int highest_score;
-extern char keypress;
 
 int game_snake(struct LinkedList* snake);
+
 int generate_dst();
+
 int* value_in_matrix(int pos);

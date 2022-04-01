@@ -1,10 +1,8 @@
 #include "GameSnake.h"
-#include "Common.h"
 
 int matrix[HEIGHT][WIDTH];
 char sep_line[WIDTH * 2 + 3];
 int highest_score = 0;
-char keypress = 0;
 
 /**
  * return
@@ -23,6 +21,7 @@ int game_snake(struct LinkedList* snake) {
 
 	int dst = generate_dst();
 	*value_in_matrix(dst) = SNAKE_DST;
+	char keypress = 0;
 
 	for (;;) {
 		clear_screen();
@@ -101,7 +100,6 @@ int game_snake(struct LinkedList* snake) {
 
 		*head = SNAKE_HEAD;
 	}
-	return 0;
 }
 
 int generate_dst() {
